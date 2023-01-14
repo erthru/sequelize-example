@@ -1,7 +1,7 @@
-require("./configs/env");
 const express = require("express");
 const cors = require("cors");
 const routes = require("./routes");
+const environment = require("./utils/environment");
 const db = require("./configs/db");
 
 const app = express();
@@ -11,7 +11,7 @@ app.use(express.static("public"));
 app.use(cors());
 app.use(routes);
 
-app.listen(process.env.PORT, async function () {
+app.listen(environment.PORT, async function () {
   try {
     await db.sync();
     console.log(`db successfull to sync`);
